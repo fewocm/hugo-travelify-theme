@@ -37,7 +37,7 @@ canonifyURLs = true
     name  = "About"
     url   = "/about/"
     weight = 10
-    
+
 [[menu.main]]
     name  = "contact"
     url   = "/contact/"
@@ -64,7 +64,7 @@ canonifyURLs = true
     name  = "cOntact3"
     url   = "/contact/"
     parent = "contact"
-		
+
 [params.share]
     enable = true
     facebook = true
@@ -92,7 +92,7 @@ DisqusShortname = "example"
     pinterest       = "example"
     facebook        = "example"
     twitter         = "example"
-    email           = "joe@example.com"	
+    email           = "joe@example.com"
 
 # Enable and disable widgets for the right sidebar
 [params.widgets]
@@ -110,7 +110,7 @@ DisqusShortname = "example"
     enable = true
     manual = false # Setting manual to true renders the slide selection to only those where the post has a slider=true option enabled
     num_features = 6 # The slider picks up the banner images from the N most recent posts, where num_features is N.
-    
+
 [permalinks]
     categories = "/categories/:slug/" #can be changed to "/category/:slug/"
     tags = "/tags/:slug/"
@@ -125,7 +125,7 @@ DisqusShortname = "example"
     enable = true  # visitor badge from https://visitor-badge.glitch.me/
 
 ## DONE - Menu
-## DONE - slider 
+## DONE - slider
 ## DONE - facebook like on homepage
 ## DONE - category URL to work
 ## DONE - footer
