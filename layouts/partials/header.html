@@ -4,8 +4,6 @@
 {{ $embed_style := $embed_css | resources.Minify }}
 <head>
     <title>{{ if .IsHome }}{{ .Site.Title }}  - {{ .Site.Params.site_description }} {{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }} </title>
-    <!--    <link rel='dns-prefetch' href='//fonts.googleapis.com' />  -->
-    <link rel='dns-prefetch' href='//s.w.org' />
     <meta charset="UTF-8" />
     <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
