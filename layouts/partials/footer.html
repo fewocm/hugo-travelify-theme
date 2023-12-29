@@ -5,7 +5,18 @@
       <div class="copyright">&copy; {{now.Format "2006"}}
 	{{ with .Site.Params.copyright }}{{ . | markdownify}}{{ end }}
       </div><!-- .copyright -->
-      <div class="footer-right"></div><div style="clear:both;">
+      <div class="footer-right">
+        {{ if .IsTranslated }}
+        <p><i class="fa fa-language" aria-hidden="true"></i> {{ i18n "read_in" }}:&nbsp;</p>
+        <ul id="translations">
+          {{ range .Translations }}
+          <li>
+            <a href="{{ .RelPermalink }}" lang="{{ .Lang }}" hreflang="{{ .Lang }}">{{ .Language.LanguageName }}</a>
+          </li>
+          {{ end }}
+        </ul>
+        {{ end }}
+      </div><div style="clear:both;">
       </div>
     </div><!-- .container -->
   </div><!-- #site-generator -->
