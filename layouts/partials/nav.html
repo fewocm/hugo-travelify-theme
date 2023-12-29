@@ -3,30 +3,43 @@
     <ul class="root">
         {{ $rel := $.Page.RelPermalink }}
         {{ range .Site.Menus.main.ByWeight }}
-        <li class="menu-item menu-item-type-post_type menu-item-object-page {{ if eq $rel .URL }}active{{end}}">
-	          <a href="{{ .URL }}">{{ .Name }}{{ if .HasChildren }} &raquo;{{ end }}</a>
-	          {{ if .HasChildren }}
-	          <ul class="sub-menu">
-	              {{ range .Children }}
-	              <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children">
-	                  <a href="{{ .URL }}">{{ .Name }}{{ if .HasChildren }} &raquo;{{ end }}
-	                  </a>
-	                  {{ if .HasChildren }}
-	                  <ul class="sub-menu">
-	                      {{ range .Children }}
-	                      <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
-		                        <a href="{{ .URL }}">{{ .Name }}
-		                        </a>
-	                      </li>
-	                      {{ end }}
-	                  </ul>
-	                  {{ end }}
-	              </li>
-	              {{ end }}
-	          </ul>
-	          {{ end }}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page {{ if eq $rel .URL }}active{{end}} {{ with .Params.class }}{{ . }}{{ end }}">
+            <a href="{{ .URL }}" title="{{ .Title }}">{{ .Pre }}{{ .Name }}{{ .Post }}{{ if .HasChildren }} &raquo;{{ end }}</a>
+            {{ if .HasChildren }}
+            <ul class="sub-menu">
+                {{ range .Children }}
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children {{ with .Params.class }}{{ . }}{{ end }}">
+                    <a href="{{ .URL }}" title="{{ .Title }}">{{ .Pre }}{{ .Name }}{{ .Post }}{{ if .HasChildren }} &raquo;{{ end }}
+                    </a>
+                    {{ if .HasChildren }}
+                    <ul class="sub-menu">
+                        {{ range .Children }}
+                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category {{ with .Params.class }}{{ . }}{{ end }}">
+                            <a href="{{ .URL }}" title="{{ .Title }}">{{ .Pre }}{{ .Name }}{{ .Post }}
+                            </a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                    {{ end }}
+                </li>
+                {{ end }}
+            </ul>
+            {{ end }}
         </li>
         {{ end }}
-    </ul>
+        <!-- Translations -->
+        {{ if .IsTranslated }}
+        <li class="menu-item menu-item-type-post_type menu-item-object-page" id="nav-translations">
+          <a title="Translations"><i class="fa fa-language" aria-hidden="true"></i> Sprache / Language &raquo;</a>
+          <ul class="sub-menu">
+            {{ range .Translations }}
+            <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children">
+              <a href="{{ .RelPermalink }}" lang="{{ .Lang }}" hreflang="{{ .Lang }}">{{ .Language.LanguageName }}</a>
+            </li>
+            {{ end }}
+          </ul>
+        </li>
+        {{ end }} <!-- #nav-translations -->
+      </ul>
   </div><!-- .container -->
 </nav><!-- #main-nav -->
