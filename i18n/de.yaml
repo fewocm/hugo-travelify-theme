@@ -1,6 +1,9 @@
 read_in:
   other: Lesen auf
 
+persons:
+  other: Personen
+
 further:
   other: Weitere
 holiday_apartments:

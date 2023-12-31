@@ -11,7 +11,8 @@
     {{ range where .Site.RegularPages "Section" "apartments" -}}
     {{/*  Only show apartment if same type and not the very same apartment  */}}
     {{ if and (eq .Params.apartment.type $thistype) (not (eq .Params.apartment.id $thisid)) -}}
-    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ $data := (index .Site.Data.apartments.apartments .Params.apartment.id)  }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> (max. {{ $data.maxpersons }} {{ T "persons" }})</li>
     {{ end -}}
     {{ end -}}
   </ul>
