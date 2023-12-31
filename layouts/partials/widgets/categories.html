@@ -1,3 +1,4 @@
+{{ if .Site.Params.widgets.author }}
 <aside id="categories-3" class="widget widget_categories">
   <h3 class="widget-title">{{with .Site.Data.l10n.widgets.categories.title}}{{.}}{{end}}</h3>
   <ul>
@@ -10,3 +11,4 @@
     {{ end }}
   </ul>
 </aside>
+{{ end }}
