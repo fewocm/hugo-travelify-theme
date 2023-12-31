@@ -1,2 +1,12 @@
 read_in:
   other: Read in
+
+further:
+  other: Further
+holiday_apartments:
+  other: Holiday Apartments
+workers_apartments:
+  other: Workers' Apartments
+
+other_apartment_type_workers:
+  other: We also offer [{{ .type }}]({{ .url }}).

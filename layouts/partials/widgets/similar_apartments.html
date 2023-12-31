@@ -1,0 +1,25 @@
+{{/*  Only show widget when activated in Site config and if we're looking at a apartment site  */}}
+{{ $id := .Page.Params.apartment_id -}}
+{{ if and .Site.Params.widgets.similar_apartments $id -}}
+{{ $this_apartment := (index .Site.Data.apartments.apartments $id) -}}
+{{/*  get translation string for headline, based on type of current apartment  */}}
+{{ $type_translated := print $this_apartment.type "_apartments" -}}
+
+<aside id="similar_apartments" class="widget widget_similar_apartments">
+  <h3 class="widget-title">{{ T "further" }} {{ T $type_translated }}</h3>
+  <ul>
+    {{ range $id, $value := .Site.Data.apartments.apartments -}}
+    {{/*  Only show apartment if same type and not the very same apartment  */}}
+    {{ if and (eq .type $this_apartment.type) (not (eq .name $this_apartment.name)) -}}
+    {{ $url := print "/apartments/" (replace $id "_" "-" ) "/" -}}
+    <li><a href="{{ relLangURL $url }}">{{ .name }}</a></li>
+    {{ end -}}
+    {{ end -}}
+  </ul>
+
+  {{/*  Get type of other apartments and their translation  */}}
+  {{ $othertype := "workers" }}{{ with eq $this_apartment.type $othertype }}{{ $othertype = "holiday" }}{{ end -}}
+  {{ $othertype_T := T (print $othertype "_apartments" ) -}}
+  <p class="other_types">{{- T "other_apartment_type_workers" (dict "type" $othertype_T "url" (relLangURL (print "/" $othertype "-apartments/"))) | markdownify }}</p>
+</aside>
+{{ end -}}

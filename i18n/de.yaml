@@ -1,2 +1,12 @@
 read_in:
   other: Lesen auf
+
+further:
+  other: Weitere
+holiday_apartments:
+  other: Ferienwohnungen
+workers_apartments:
+  other: Monteurswohnungen
+
+other_apartment_type_workers:
+  other: Wir bieten außerdem [{{ .type }}]({{ .url }}) an.

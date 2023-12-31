@@ -1,5 +1,6 @@
 {{ if not .Params.widgets }}
 <div id="secondary">
+    {{ partial "widgets/similar_apartments" . }}
     {{ partial "widgets/recent_articles" . }}
     {{ partial "widgets/facebook_like" . }}
     {{ partial "widgets/mailchimp" . }}
@@ -10,4 +11,3 @@
     {{ partial "widgets/author" . }}
 </div><!-- #secondary -->
 {{ end }}
-
