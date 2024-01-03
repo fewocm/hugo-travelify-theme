@@ -11,8 +11,14 @@
     {{ range where .Site.RegularPages "Section" "apartments" -}}
     {{/*  Only show apartment if same type and not the very same apartment  */}}
     {{ if and (eq .Params.apartment.type $thistype) (not (eq .Params.apartment.id $thisid)) -}}
-    {{ $data := (index .Site.Data.apartments.apartments .Params.apartment.id)  }}
-    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> (max. {{ $data.maxpersons }} {{ T "persons" }})</li>
+    {{ $data := (index .Site.Data.apartments.apartments .Params.apartment.id) -}}
+    {{/*  Get min. price per night for apartment  */}}
+    {{ $allprices := slice $data.price.season_main $data.price.season_spring $data.price.season_fall $data.price.season_winter -}}
+    {{ $validprices := slice -}}
+    {{ range $allprices }}{{ if . }}{{ $validprices = append . $validprices}}{{ end }}{{ end -}}
+    {{ $validprices := sort $validprices -}}
+    {{ $minprice := index $validprices 0 -}}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> ({{ T "apartment_summary" (dict "persons" $data.maxpersons "price" $minprice) }})</li>
     {{ end -}}
     {{ end -}}
   </ul>
