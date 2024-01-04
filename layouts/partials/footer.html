@@ -18,6 +18,15 @@
         {{ end }}
       </div><div style="clear:both;">
       </div>
+      <div>
+        <ul class="copyright tagwordlist">
+          {{ range .Site.Menus.footer.ByName -}}
+          <li><a href="{{ relLangURL .URL }}" title="{{ .Title }}">{{ .Pre }}{{ .Name }}{{ .Post }}</a></li>
+          {{ end -}}
+        </ul>
+      </div>
+      <div style="clear:both;">
+      </div>
     </div><!-- .container -->
   </div><!-- #site-generator -->
   <div class="back-to-top">
