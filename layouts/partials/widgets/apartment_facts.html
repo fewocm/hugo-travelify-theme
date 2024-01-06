@@ -1,0 +1,22 @@
+{{/*  Only show widget when activated in Site config and if we're looking at a apartment site  */}}
+{{ $thisid := .Page.Params.apartment.id -}}
+{{ if and .Site.Params.widgets.apartment_facts $thisid -}}
+{{ $data := (index .Site.Data.apartments.apartments $thisid) -}}
+
+<aside id="apartment_facts" class="widget widget_apartment_facts">
+  <h3 class="widget-title">{{ T "data_about" }} {{ .Title }}</h3>
+  <ul>
+    <li>{{ T "data_maxpersons" }}: {{ $data.maxpersons }}</li>
+    <li>{{ T "data_minnights" }}: {{ $data.minnights }}</li>
+    <li>{{ T "data_size" }}: ca. {{ $data.size }} m²</li>
+    <li>{{ T "data_rooms" }}: {{ $data.rooms }}</li>
+    <li>{{ T "data_bedrooms" }}: {{ $data.bedrooms }}</li>
+    <li>
+      {{- T "data_location" }}: {{ T "data_location_text" (dict "houseno" $data.house "floorno" $data.upper_floor) -}}
+      {{ with $data.orientation -}}
+      , {{ T "data_orientation" (dict "orientation" (T (print "orientation_" .))) -}}
+      {{ end -}}
+    </li>
+  </ul>
+</aside>
+{{ end -}}

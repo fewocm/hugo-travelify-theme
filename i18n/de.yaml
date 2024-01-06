@@ -11,5 +11,33 @@ holiday_apartments:
 workers_apartments:
   other: Monteurwohnungen
 
+data_about:
+  other: Daten zur
+data_maxpersons:
+  other: Max. Gäste
+data_minnights:
+  other: Min. Übernachtungen
+data_size:
+  other: Größe
+data_rooms:
+  other: Zimmer
+data_bedrooms:
+  other: Schlafzimmer
+data_location:
+  other: Lage
+data_location_text:
+  other: Haus {{ .houseno }}, {{ .floorno }}. OG
+data_orientation:
+  other: Ausrichtung nach {{ .orientation }}
+
+orientation_N:
+  other: Norden
+orientation_O:
+  other: Osten
+orientation_S:
+  other: Süden
+orientation_W:
+  other: Westen
+
 other_apartment_type_workers:
   other: Wir bieten außerdem [{{ .type }}]({{ .url }}) an.

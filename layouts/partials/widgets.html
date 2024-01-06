@@ -1,5 +1,6 @@
 {{ if not .Params.widgets }}
 <div id="secondary">
+    {{ partial "widgets/apartment_facts" . }}
     {{ partial "widgets/similar_apartments" . }}
     {{ partial "widgets/recent_articles" . }}
     {{ partial "widgets/facebook_like" . }}
