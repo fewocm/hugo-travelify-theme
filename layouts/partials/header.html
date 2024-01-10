@@ -92,7 +92,9 @@
 
     </script>
     {{ end }}
-    {{ range $i, $src := .Site.Params.custom_css }}
-    <link rel='stylesheet' id='custom_css_{{ $i }}'  href="{{ $src | absURL }}" type='text/css' media='all' />
-    {{ end }}
+    {{- range .Site.Params.custom_css_resources }}
+    {{- with resources.Get . | toCSS | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{- end }}
+    {{- end }}
 </head>
