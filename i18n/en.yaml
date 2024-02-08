@@ -11,5 +11,33 @@ holiday_apartments:
 workers_apartments:
   other: Workers' Apartments
 
+data_about:
+  other: Data about
+data_maxpersons:
+  other: Max. guests
+data_minnights:
+  other: Min. overnight stays
+data_size:
+  other: Size
+data_rooms:
+  other: Rooms
+data_bedrooms:
+  other: Bedrooms
+data_location:
+  other: Location
+data_location_text:
+  other: House {{ .houseno }}, {{ .floorno }}. upper floor
+data_orientation:
+  other: Orientation to {{ .orientation }}
+
+orientation_N:
+  other: North
+orientation_O:
+  other: East
+orientation_S:
+  other: South
+orientation_W:
+  other: West
+
 other_apartment_type_workers:
   other: We also offer [{{ .type }}]({{ .url }}).
