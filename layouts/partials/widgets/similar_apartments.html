@@ -18,7 +18,11 @@
     {{ range $allprices }}{{ if . }}{{ $validprices = append . $validprices}}{{ end }}{{ end -}}
     {{ $validprices := sort $validprices -}}
     {{ $minprice := index $validprices 0 -}}
-    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> ({{ T "apartment_summary" (dict "persons" $data.maxpersons "price" $minprice) }})</li>
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      ({{ T "apartment_summary_persons" (dict "persons" $data.maxpersons) }}
+      {{- with $minprice }}, {{ T "apartment_summary_price" (dict "price" .) }}{{ end }})
+    </li>
     {{ end -}}
     {{ end -}}
   </ul>
