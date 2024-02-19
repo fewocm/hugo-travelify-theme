@@ -30,6 +30,13 @@
         <!-- Translations -->
         {{ if .IsTranslated }}
         <li class="menu-item menu-item-type-post_type menu-item-object-page" id="nav-translations">
+          {{/*  Only one translation, link directly  */}}
+          {{- if eq (.Translations | len) 1 }}
+          {{- range .Translations }}
+          <a href="{{ .RelPermalink }}" lang="{{ .Lang }}" hreflang="{{ .Lang }}"><i class="fa fa-language" aria-hidden="true"></i> {{ .Language.LanguageName }} &raquo;</a>
+          {{- end }}
+          {{/*  Multiple translations, show them in menu  */}}
+          {{- else }}
           <a title="Translations"><i class="fa fa-language" aria-hidden="true"></i> Sprache / Language &raquo;</a>
           <ul class="sub-menu">
             {{ range .Translations }}
@@ -38,6 +45,7 @@
             </li>
             {{ end }}
           </ul>
+          {{- end }}
         </li>
         {{ end }} <!-- #nav-translations -->
       </ul>
