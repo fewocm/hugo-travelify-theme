@@ -19,6 +19,12 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#603cba">
     <meta name="theme-color" content="#ffffff">
+    {{- with .Site.Params.meta_description }}
+    <meta name="description" content="{{ . }}">
+    {{- end }}
+    {{- with .Site.Params.meta_keywords }}
+    <meta name="keywords" content="{{ . }}">
+    {{- end }}
     {{ if and (and (not (eq .Site.DisqusShortname "")) (not .Params.disable_comments)) }}
     <script id="dsq-count-scr" src="https://{{ .Site.Params.privacy.DisqusShortname }}.disqus.com/count.js" async></script>
     {{ end }}
