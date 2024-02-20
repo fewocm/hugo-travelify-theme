@@ -3,7 +3,14 @@
 {{ $embed_css := resources.Get "embed.css" }}
 {{ $embed_style := $embed_css | resources.Minify }}
 <head>
-    <title>{{ if .IsHome }}{{ .Site.Title | markdownify | plainify }}  - {{ .Site.Params.site_description }} {{ else }}{{ .Title }} - {{ .Site.Title | markdownify | plainify }}{{ end }} </title>
+    {{/*  Sanitize site title  */}}
+    {{- $sitetitle_clean := replace .Site.Title "'" "" | markdownify | plainify }}
+    {{- if .IsHome }}
+    {{- $sitetitle_clean = print $sitetitle_clean " - " .Site.Params.site_description }}
+    {{- else }}
+    {{- $sitetitle_clean = print .Title " - " $sitetitle_clean }}
+    {{- end }}
+    <title>{{ $sitetitle_clean }}</title>
     <meta charset="UTF-8" />
     <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -19,12 +26,39 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#603cba">
     <meta name="theme-color" content="#ffffff">
+
+    <!-- Meta Tags for SEO and OpenGraph -->
+    <!-- HTML Meta Description on start page -->
+    {{- if .IsHome }}
     {{- with .Site.Params.meta_description }}
-    <meta name="description" content="{{ . }}">
+    <meta name="description" content="{{ . }}" />
+    <meta property="og:description" content="{{ . }}" />
+    <meta property="twitter:description" content="{{ . }}" />
     {{- end }}
+    {{- else }}
+    <meta name="description" content="{{ .Summary | truncate 160 }}" />
+    <meta property="og:description" content="{{ .Summary | truncate 160 }}" />
+    <meta property="twitter:description" content="{{ .Summary | truncate 160 }}" />
+    {{- end }}
+
+    <!-- Meta Keywords -->
     {{- with .Site.Params.meta_keywords }}
     <meta name="keywords" content="{{ . }}">
     {{- end }}
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $sitetitle_clean }}">
+    <meta property="og:image" content="{{ absURL "/img/collage.jpg" }}">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="{{ (urls.Parse .Site.BaseURL).Hostname }}">
+    <meta property="twitter:url" content="{{ .Permalink }}">
+    <meta name="twitter:title" content="{{ $sitetitle_clean }}">
+    <meta name="twitter:image" content="{{ absURL "/img/collage.jpg" }}">
+
     {{ if and (and (not (eq .Site.DisqusShortname "")) (not .Params.disable_comments)) }}
     <script id="dsq-count-scr" src="https://{{ .Site.Params.privacy.DisqusShortname }}.disqus.com/count.js" async></script>
     {{ end }}
