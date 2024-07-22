@@ -8,7 +8,7 @@
     _paq.push(["setTrackerUrl", u+"piwik.php"]);
     _paq.push(["setSiteId", "{{ .Site.Params.matomo.siteid }}"]);
     var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
-    g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"piwik.php"; s.parentNode.insertBefore(g,s);
+    g.type="text/javascript"; g.async=true; g.defer=true; g.src="{{ relURL "piwik.php" }}"; s.parentNode.insertBefore(g,s);
   })();
 </script>
 <!-- End Piwik Code -->

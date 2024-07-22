@@ -14,9 +14,9 @@
     <meta charset="UTF-8" />
     <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel='stylesheet' id='travelify_style-css'  href="{{ $style.Permalink }}" type='text/css' media='all' />
-    <link rel='stylesheet' id='embed_style-css'  href="{{ $embed_style.Permalink }}" type='text/css' media='all' />
-    <link rel='stylesheet' id='google_font_ubuntu-css'  href="{{ $style.Permalink }}" type='text/css' media='all' />
+    <link rel='stylesheet' id='travelify_style-css'  href="{{ $style.RelPermalink }}" type='text/css' media='all' />
+    <link rel='stylesheet' id='embed_style-css'  href="{{ $embed_style.RelPermalink }}" type='text/css' media='all' />
+    <link rel='stylesheet' id='google_font_ubuntu-css'  href="{{ $style.RelPermalink }}" type='text/css' media='all' />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="120x120" href="/favicon-120x120.png">
@@ -90,7 +90,7 @@
      input[type="reset"]:hover,input[type="button"]:hover,input[type="submit"]:hover,input[type="reset"]:active,input[type="button"]:active,input[type="submit"]:active, .entry-meta-bar .readmore:hover, .entry-meta-bar .readmore:active, ul.default-wp-page li a:hover, ul.default-wp-page li a:active { background: #439f55; border-color: #439f55; }
     </style>
     <style type="text/css" id="custom-background-css">
-     body.custom-background { background-image: url("{{ .Site.BaseURL }}images/background.png"); background-position: left top; background-size: auto; background-repeat: repeat; background-attachment: scroll; }
+     body.custom-background { background-image: url("{{ relURL "images/background.png" }}"); background-position: left top; background-size: auto; background-repeat: repeat; background-attachment: scroll; }
     </style>
     <style type="text/css" media="print">#wpadminbar { display:none; }</style>
     <style type="text/css" media="screen">
