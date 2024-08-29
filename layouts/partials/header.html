@@ -59,7 +59,7 @@
     <meta name="twitter:title" content="{{ $sitetitle_clean }}">
     <meta name="twitter:image" content="{{ absURL "/img/collage.jpg" }}">
 
-    {{ if and (and (not (eq .Site.DisqusShortname "")) (not .Params.disable_comments)) }}
+    {{ if and (and (not (eq .Site.Config.Services.Disqus.Shortname "")) (not .Params.disable_comments)) }}
     <script id="dsq-count-scr" src="https://{{ .Site.Params.privacy.DisqusShortname }}.disqus.com/count.js" async></script>
     {{ end }}
     <!-- Translations -->
